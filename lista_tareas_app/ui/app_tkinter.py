@@ -1,14 +1,14 @@
 # ui/app_tkinter.py
 import tkinter as tk
 from tkinter import messagebox
-from servicios.tareas_servicios import TareasServicios
+from servicios.tarea_servicio import TareaServicio
 
 
 class VentanaPrincipal:
     def __init__(self, root):
         self.root = root
         self.root.title("Lista de Tareas - GUI")
-        self.servicio = TareasServicios()
+        self.servicio = TareaServicio()
 
         # Componente Entry para la descripción de la tarea
         self.entrada = tk.Entry(root, width=40)
@@ -40,7 +40,7 @@ class VentanaPrincipal:
     def refrescar_lista(self):
         """Actualiza la visualización y aplica el feedback visual solicitado."""
         self.lista_visual.delete(0, tk.END)
-        for tarea in self.servicio.obtener_tareas():
+        for tarea in self.servicio.listar_tareas():
             texto = tarea.descripcion
             if tarea.completada:
                 texto = f"[Hecho] {texto}"
